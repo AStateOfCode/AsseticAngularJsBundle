@@ -28,7 +28,7 @@ class SymfonyTemplateNameFormatter implements TemplateNameFormatterInterface
 
     public function __construct(KernelInterface $kernel)
     {
-        $bundleMap = [];
+        $bundleMap = array();
         foreach ($kernel->getBundles() as $bundle) {
             $bundleMap[$bundle->getPath()] = $bundle->getName();
         }
