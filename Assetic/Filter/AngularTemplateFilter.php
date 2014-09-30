@@ -40,15 +40,13 @@ class AngularTemplateFilter extends BaseNodeFilter
         $html = '';
         $content = explode("\n", $content);
         foreach ($content as $line) {
-            if ($html !== '') {
-                $html .= "\n +";
-            }
-            $html .= sprintf('"%s"', $line);
+            // Create javascript multiline strings
+            $html .= sprintf("%s\\\n", $line);
         }
 
         $js = <<<JS
 angular.module("$templateName", []).run(["\$templateCache", function(\$templateCache) {
-  \$templateCache.put("$templateName", $html);
+  \$templateCache.put("$templateName", "$html");
 }]);
 JS;
 
