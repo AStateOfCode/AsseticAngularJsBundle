@@ -29,13 +29,13 @@ Just include the Angular templates as any other javascript resource using the ja
 The resulting output will be something like this:
 
 ```javascript
-angular.module("BundleName/aTemplate.html", []).run(["$templateCache", function($templateCache) {
+angular.module("BundleName.templates").run(["$templateCache", function($templateCache) {
   $templateCache.put("BundleName/aTemplate.html", "HTML here");
 }]);
-angular.module("BundleName/fooTemplate.html", []).run(["$templateCache", function($templateCache) {
+angular.module("BundleName.templates").run(["$templateCache", function($templateCache) {
   $templateCache.put("BundleName/fooTemplate.html", "HTML here");
 }]);
-angular.module("BundleName/moarTemplates/bar.html", []).run(["$templateCache", function($templateCache) {
+angular.module("BundleName.templates").run(["$templateCache", function($templateCache) {
   $templateCache.put("BundleName/moarTemplates/bar.html", "HTML here");
 }]);
 // ...

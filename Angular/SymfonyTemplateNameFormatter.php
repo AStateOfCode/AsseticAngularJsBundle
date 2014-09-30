@@ -36,6 +36,30 @@ class SymfonyTemplateNameFormatter implements TemplateNameFormatterInterface
         $this->bundleMap = $bundleMap;
     }
 
+    /**
+     * Create module name for asset.
+     * This is bundle name.
+     *
+     * @param AssetInterface $asset
+     * @return string
+     */
+    public function getModuleForAsset(AssetInterface $asset)
+    {
+        $sourceRoot = $asset->getSourceRoot();
+        $bundleName = $this->bundleMap[$sourceRoot];
+        if (!isset($bundleName)) {
+            throw new \Exception('Could not map the asset to a bundle');
+        }
+
+        return $bundleName . '.templates';
+    }
+
+    /**
+     * Create template name for asset.
+     *
+     * @param AssetInterface $asset
+     * @return string
+     */
     public function getForAsset(AssetInterface $asset)
     {
         $sourceRoot = $asset->getSourceRoot();
