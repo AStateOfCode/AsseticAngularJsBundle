@@ -37,15 +37,9 @@ class AngularTemplateFilter extends BaseNodeFilter
         $templateName = $this->templateNameFormatter->getForAsset($asset);
 
         $content = addslashes($asset->getContent());
-        $html = '';
-        // Explode by EOL
         $content = preg_split("/\R/", $content);
-        foreach ($content as $line) {
-            if ($html !== '') {
-                $html .= "\n +";
-            }
-            $html .= sprintf('"%s"', $line);
-        }
+        
+        $html = sprintf('"%s"', implode('\n', $content));
 
         $js = <<<JS
 angular.module("$templateName", []).run(["\$templateCache", function(\$templateCache) {
