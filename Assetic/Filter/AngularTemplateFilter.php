@@ -38,8 +38,8 @@ class AngularTemplateFilter extends BaseNodeFilter
 
         $content = addslashes($asset->getContent());
         $html = '';
-        // Explode by EOL
-        $content = preg_split("/\R/", $content);
+        // Explode by EOL. Keep multi-byte encoding.
+        $content = preg_split("/\R/u", $content);
         foreach ($content as $line) {
             if ($html !== '') {
                 $html .= "\n +";
