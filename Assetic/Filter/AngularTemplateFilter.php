@@ -34,6 +34,7 @@ class AngularTemplateFilter extends BaseNodeFilter
 
     public function filterLoad(AssetInterface $asset)
     {
+        $moduleName = $this->templateNameFormatter->getModuleForAsset($asset);
         $templateName = $this->templateNameFormatter->getForAsset($asset);
 
         $content = addslashes($asset->getContent());
@@ -48,7 +49,7 @@ class AngularTemplateFilter extends BaseNodeFilter
         }
 
         $js = <<<JS
-angular.module("$templateName", []).run(["\$templateCache", function(\$templateCache) {
+angular.module("${moduleName}").run(["\$templateCache", function(\$templateCache) { function(\$templateCache) {
   \$templateCache.put("$templateName", $html);
 }]);
 JS;
