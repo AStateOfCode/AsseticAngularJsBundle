@@ -49,7 +49,7 @@ class AngularTemplateFilter extends BaseNodeFilter
         }
 
         $js = <<<JS
-angular.module("${moduleName}").run(["\$templateCache", function(\$templateCache) { function(\$templateCache) {
+angular.module("${moduleName}").run(["\$templateCache", function(\$templateCache) {
   \$templateCache.put("$templateName", $html);
 }]);
 JS;
